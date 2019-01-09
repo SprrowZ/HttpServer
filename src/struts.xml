@@ -12,6 +12,14 @@
      <action name="login" class="com.zzg.actions.UserAction" method="login">
       
      </action>
+     <action name="postString" class="com.zzg.actions.UserAction" method="postString">
+     
+     </action>
+     
+     <action name="postFile" class="com.zzg.actions.UserAction" method="postFile">
+     
+     </action>
+     
     </package>
 
 </struts>
