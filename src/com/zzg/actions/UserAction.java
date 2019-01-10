@@ -68,6 +68,9 @@ public class UserAction extends ActionSupport{
 		}
 		//返回给客户端信息
 		HttpServletResponse response= ServletActionContext.getResponse();
+		//设置编码格式，不然客户端是gbk解析就乱码了
+		response.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
 		PrintWriter writer=response.getWriter();
 		writer.write("服务端接收数据："+result);
 		writer.flush();
