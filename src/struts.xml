@@ -20,10 +20,12 @@
      
      </action>
      
-        <action name="uploadInfo" class="com.zzg.actions.UserAction" method="uploadInfo">
+      <action name="uploadInfo" class="com.zzg.actions.UserAction" method="uploadInfo">
      
      </action>
-     
+       
+      <action name="uploadFiles" class="com.zzg.actions.UserAction" method="uploadFiles"/> 
+            
     </package>
 
 </struts>

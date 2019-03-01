@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.io.FileUtils;
  
 import org.apache.struts2.ServletActionContext;
+import org.eclipse.jdt.internal.compiler.ast.ThrowStatement;
 
 import com.opensymphony.xwork2.ActionSupport;
  
@@ -35,6 +36,10 @@ public class UserAction extends ActionSupport{
 	public File mPhoto;
 	//这个写法也是固定的，FileName，不能改变大小写
 	public String mPhotoFileName;
+	//接收多个文件，，这里一次性两个
+	public File mPhoto2;
+	public String mPhoto2FileName;
+	
 	/**
 	 * 模仿用户登录
 	 * @return
@@ -131,9 +136,39 @@ public class UserAction extends ActionSupport{
 			}
 		 
 		FileUtils.copyFile(mPhoto, file);
-		System.out.println("fileName"+mPhotoFileName+"||userName:"+userName
+		System.out.println("fileName:"+mPhotoFileName+"||userName:"+userName
 				+"||password:"+password);
 		return null;
+	}
+	/**
+	 * 上传多个文件用
+	 * @return
+	 * @throws IOException 
+	 */
+	public  String uploadFiles() throws IOException{
+	 if (mPhoto==null&&mPhoto2==null) {
+		System.out.println(mPhotoFileName+"is null and "+mPhoto2FileName+"is null");
+	}	
+	String dir1="D:/okhttpServer/" +mPhotoFileName;
+	String dir2="D:/okhttpServer/"+mPhoto2FileName;
+	 
+	File file1=new File(dir1);
+	File file2=new File(dir2);
+	if (!file1.getParentFile().exists()||!file1.getParentFile().isDirectory()) {
+		file1.getParentFile().mkdirs();
+	}
+	if (!file1.exists()) {
+		file1.createNewFile();
+	}
+	if (!file2.exists()) {
+		file2.createNewFile();
+	}
+	FileUtils.copyFile(mPhoto,file1);
+	FileUtils.copyFile(mPhoto2, file2);
+	System.out.println("fileName1:"+mPhotoFileName+"\n"+"fileName2:"+mPhoto2FileName
+			+"\n"+"userName:"+userName+"--password"+password);
+	
+	 return null;	
 	}
 	
 	public String getUserName() {
